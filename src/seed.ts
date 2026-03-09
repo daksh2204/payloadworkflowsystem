@@ -40,6 +40,20 @@ const seed = async () => {
     console.log('Reviewer user already exists');
   }
 
+  try {
+    const editorUser = await payload.create({
+      collection: 'users',
+      data: {
+        email: 'editor@demo.com',
+        password: 'editor123',
+        role: 'editor',
+      },
+    });
+    console.log('Created editor user:', editorUser.email);
+  } catch (error) {
+    console.log('Editor user already exists');
+  }
+
   // Create sample workflow
   try {
     const workflow = await payload.create({
